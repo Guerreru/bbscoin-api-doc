@@ -72,9 +72,15 @@ html, body {
   }
 
   // This is the logo at the top of the ToC
+  .logo_c {
+    text-align: center;
+  }
+
   .logo {
-    display: block;
+    display: inline-block;
     max-width: 100%;
+    width: 100px;
+    margin-top: $logo-margin;
     margin-bottom: $logo-margin;
   }
 
