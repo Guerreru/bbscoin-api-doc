@@ -185,10 +185,10 @@ client.wallet.getTransactions(0, 10).then(data => {
 
 ### Request body parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-offset | 0 | The endpoint will return all pending transactions when offset is set to 0.
-limit | 10 | Defines how many results will be returned.
+Parameter | Type | Default | Description
+--------- | ---- | ------- | -----------
+offset | integer | 0 | The endpoint will return all pending transactions when offset is set to 0.
+limit | integer | 10 | Defines how many results will be returned.
 
 ## Get details of a transcation
 
@@ -246,9 +246,9 @@ client.wallet.getTransactionDetails("hash").then(data => {
 
 ### Request body parameters
 
-Parameter | Description
---------- | -----------
-hash | The hash of the transaction.
+Parameter | Type | Description
+--------- | ---- | -----------
+hash | string | The hash of the transaction.
 
 ## Send a transcation
 
@@ -278,11 +278,11 @@ client.wallet.send('address', 'amount', 'fee', 'paymentId', 'mixin').then(data =
 
 ### Request body parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-address | required | The destination address.
-amount | required | The amount to be sent.
-fee | required | Transaction fee.
-paymentId | "" | Transaction id to be attached to the transaction.
-mixin | 0 | Anonymity level.
+Parameter | Type | Default | Description
+--------- | ---- | ------- | -----------
+address | string | required | The destination address.
+amount | string | required | The amount to be sent.
+fee | string | required | Transaction fee.
+paymentId | string | "" | Transaction id to be attached to the transaction.
+mixin | integer | 0 | Anonymity level.
 
