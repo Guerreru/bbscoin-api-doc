@@ -27,6 +27,7 @@ BBS.money provides a simple and powerful REST API to integrate BBSCoin payments 
 ## Supported libraries
 
 - Node.js: [bbs-money-client](https://www.npmjs.com/package/bbs-money-client)
+- PHP: [bbs-money-client-php](https://github.com/bbscoin/bbs-money-client-php)
 
 ## Developer support
 
