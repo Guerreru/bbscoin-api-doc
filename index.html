@@ -304,10 +304,9 @@ The signature paramter should be calculated as:</p>
 <pre class="highlight plaintext"><code>SHA256-HMAC('{"hello":"world"}1526879890634', 'abcdef')
 </code></pre>
 <blockquote>
-<p>The request should be sent to:</p>
+<p>The request should be sent to: <br> https://api.bbs.money/api/endpoint?appid=123456&amp;sign=b55a18fa43da483fd6e624b222bed806c905c98d9a3b81b612b9ceebf154d2cf&amp;ts=1526879890634</p>
 </blockquote>
-<pre class="highlight plaintext"><code>https://api.bbs.money/api/endpoint?appid=123456&amp;sign=b55a18fa43da483fd6e624b222bed806c905c98d9a3b81b612b9ceebf154d2cf&amp;ts=1526879890634
-</code></pre>
+
 <p>All request bodies should have content type <code>application/json</code> and be valid JSON. <br>
 Requests must be signed and contain the following query parameters:</p>
 
