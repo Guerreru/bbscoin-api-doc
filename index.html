@@ -356,15 +356,14 @@ In the case when you are using a suppported client. The error message will be co
     "code": "VALIDATION_ERROR",
     "message": "The length of password must be greater than 6"
 }
-</code></pre><h1 id='wallet'>Wallet</h1><h2 id='get-balance'>Get balance</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{}'</span> -H <span class="s2">"Content-Type: application/json"</span> -X POST https://api.bbs.money/wallet/balance?appid<span class="o">=</span>...&amp;sign<span class="o">=</span>...&amp;ts<span class="o">=</span>...
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="p">{</span> <span class="nx">Client</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bbs-money-client'</span><span class="p">);</span>
-<span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span> <span class="s2">"appId"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">,</span> <span class="s2">"appKey"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">});</span>
-<span class="nx">client</span><span class="p">.</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
+</code></pre><h1 id='wallet'>Wallet</h1><h2 id='get-balance'>Get balance</h2>
+<blockquote>
+<p>Request example:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{}
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Response example:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   "address": "wallet address",
@@ -373,18 +372,33 @@ In the case when you are using a suppported client. The error message will be co
   "total": "0"
 }
 </code></pre>
-<p>Retrieve the balance of current wallet address.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /wallet/balance</code></p>
-<h2 id='get-transactions'>Get transactions</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"offset":0,"limit":10}'</span> -H <span class="s2">"Content-Type: application/json"</span> -X POST https://api.bbs.money/wallet/transactions?appid<span class="o">=</span>...&amp;sign<span class="o">=</span>...&amp;ts<span class="o">=</span>...
+<blockquote>
+<p>Client example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="se">\</span>
+-d <span class="s1">'{}'</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-X POST https://api.bbs.money/wallet/balance?appid<span class="o">=</span>...&amp;sign<span class="o">=</span>...&amp;ts<span class="o">=</span>...
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="p">{</span> <span class="nx">Client</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bbs-money-client'</span><span class="p">);</span>
 <span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span> <span class="s2">"appId"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">,</span> <span class="s2">"appKey"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">});</span>
-<span class="nx">client</span><span class="p">.</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">getTransactions</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<p>Retrieve the balance of current wallet address.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /wallet/balance</code></p>
+<h2 id='get-transactions'>Get transactions</h2>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Request example:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "offset": 0,
+  "limit": 10
+}
+</code></pre>
+<blockquote>
+<p>Response example:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>[
   {
@@ -410,6 +424,19 @@ In the case when you are using a suppported client. The error message will be co
     "status": "normal"
   }
 ]
+</code></pre>
+<blockquote>
+<p>Client example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="se">\</span>
+-d <span class="s1">'{"offset":0,"limit":10}'</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-X POST https://api.bbs.money/wallet/transactions?appid<span class="o">=</span>...&amp;sign<span class="o">=</span>...&amp;ts<span class="o">=</span>...
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="p">{</span> <span class="nx">Client</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bbs-money-client'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span> <span class="s2">"appId"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">,</span> <span class="s2">"appKey"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">getTransactions</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST /wallet/transactions</code></p>
 <h3 id='request-body-parameters'>Request body parameters</h3>
@@ -434,15 +461,16 @@ In the case when you are using a suppported client. The error message will be co
 <td>Defines how many results will be returned.</td>
 </tr>
 </tbody></table>
-<h2 id='get-details-of-a-transcation'>Get details of a transcation</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"hash":"..."}'</span> -H <span class="s2">"Content-Type: application/json"</span> -X POST https://api.bbs.money/wallet/transaction-details?appid<span class="o">=</span>...&amp;sign<span class="o">=</span>...&amp;ts<span class="o">=</span>...
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="p">{</span> <span class="nx">Client</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bbs-money-client'</span><span class="p">);</span>
-<span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span> <span class="s2">"appId"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">,</span> <span class="s2">"appKey"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">});</span>
-<span class="nx">client</span><span class="p">.</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">getTransactionDetails</span><span class="p">(</span><span class="s2">"hash"</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
+<h2 id='get-details-of-a-transcation'>Get details of a transcation</h2>
+<blockquote>
+<p>Request example:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "hash": "transaction hash"
+}
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Response example:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
   // Transaction hash
@@ -475,6 +503,19 @@ In the case when you are using a suppported client. The error message will be co
     }
   ]
 }
+</code></pre>
+<blockquote>
+<p>Client example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="se">\</span>
+-d <span class="s1">'{"hash":"..."}'</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-X POST https://api.bbs.money/wallet/transaction-details?appid<span class="o">=</span>...&amp;sign<span class="o">=</span>...&amp;ts<span class="o">=</span>...
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="p">{</span> <span class="nx">Client</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bbs-money-client'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span> <span class="s2">"appId"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">,</span> <span class="s2">"appKey"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">getTransactionDetails</span><span class="p">(</span><span class="s2">"hash"</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre><h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /wallet/transaction-details</code></p>
 <h3 id='request-body-parameters-2'>Request body parameters</h3>
@@ -491,22 +532,78 @@ In the case when you are using a suppported client. The error message will be co
 <td>The hash of the transaction.</td>
 </tr>
 </tbody></table>
-<h2 id='send-a-transcation'>Send a transcation</h2><pre class="highlight shell tab-shell"><code>curl -d <span class="s1">'{"mixin":0,"fee":"1","paymentId":"", "transfers":[{"address":"...","amount":"1000"}]}'</span> -H <span class="s2">"Content-Type: application/json"</span> -X POST https://api.bbs.money/wallet/send?appid<span class="o">=</span>...&amp;sign<span class="o">=</span>...&amp;ts<span class="o">=</span>...
+<h2 id='send-a-transcation'>Send a transcation</h2>
+<blockquote>
+<p>Request example:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "mixin": 0,
+  "fee": "100",
+  "paymentId": "",
+  "transfers": [
+    {
+      "address":  "wallet address",
+      "amount": "1000"
+    }
+  ]
+}
+</code></pre>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "hash": "transaction hash"
+}
+</code></pre>
+<blockquote>
+<p>Client example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="se">\</span>
+-d <span class="s1">'{"mixin":0,"fee":"1","paymentId":"", "transfers":[{"address":"...","amount":"1000"}]}'</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-X POST https://api.bbs.money/wallet/send?appid<span class="o">=</span>...&amp;sign<span class="o">=</span>...&amp;ts<span class="o">=</span>...
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="p">{</span> <span class="nx">Client</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bbs-money-client'</span><span class="p">);</span>
 <span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span> <span class="s2">"appId"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">,</span> <span class="s2">"appKey"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">});</span>
 <span class="nx">client</span><span class="p">.</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'address'</span><span class="p">,</span> <span class="s1">'amount'</span><span class="p">,</span> <span class="s1">'fee'</span><span class="p">,</span> <span class="s1">'paymentId'</span><span class="p">,</span> <span class="s1">'mixin'</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight plaintext"><code>{
-  "hash": "transaction hash"
-}
 </code></pre><h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /wallet/send</code></p>
 <h3 id='request-body-parameters-3'>Request body parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mixin</td>
+<td>integer</td>
+<td>0</td>
+<td>Anonymity level.</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>string</td>
+<td>required</td>
+<td>Transaction fee.</td>
+</tr>
+<tr>
+<td>paymentId</td>
+<td>string</td>
+<td>&quot;&quot;</td>
+<td>Transaction id to be attached to the transaction.</td>
+</tr>
+<tr>
+<td>transfers</td>
+<td>Destination[]</td>
+<td>require</td>
+<td>Destinations</td>
+</tr>
+</tbody></table>
+<h3 id='destionation'>Destionation</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -526,24 +623,6 @@ In the case when you are using a suppported client. The error message will be co
 <td>string</td>
 <td>required</td>
 <td>The amount to be sent.</td>
-</tr>
-<tr>
-<td>fee</td>
-<td>string</td>
-<td>required</td>
-<td>Transaction fee.</td>
-</tr>
-<tr>
-<td>paymentId</td>
-<td>string</td>
-<td>&quot;&quot;</td>
-<td>Transaction id to be attached to the transaction.</td>
-</tr>
-<tr>
-<td>mixin</td>
-<td>integer</td>
-<td>0</td>
-<td>Anonymity level.</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
