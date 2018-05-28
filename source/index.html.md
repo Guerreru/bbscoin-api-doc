@@ -55,11 +55,7 @@ Please note the new App Key will replace the old one.
 SHA256-HMAC('{"hello":"world"}1526879890634', 'abcdef')
 ```
 
-> The request should be sent to:
-
-```
-https://api.bbs.money/api/endpoint?appid=123456&sign=b55a18fa43da483fd6e624b222bed806c905c98d9a3b81b612b9ceebf154d2cf&ts=1526879890634
-```
+> The request should be sent to: <br> https://api.bbs.money/api/endpoint?appid=123456&sign=b55a18fa43da483fd6e624b222bed806c905c98d9a3b81b612b9ceebf154d2cf&ts=1526879890634
 
 All request bodies should have content type `application/json` and be valid JSON. <br>
 Requests must be signed and contain the following query parameters:
