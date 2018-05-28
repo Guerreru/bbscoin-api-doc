@@ -107,19 +107,14 @@ In the case when you are using a suppported client. The error message will be co
 
 ## Get balance
 
-```shell
-curl -d '{}' -H "Content-Type: application/json" -X POST https://api.bbs.money/wallet/balance?appid=...&sign=...&ts=...
+> Request example:
+
+```
+{}
 ```
 
-```javascript
-const { Client } = require('bbs-money-client');
-const client = new Client({ "appId": "...", "appKey": "..."});
-client.wallet.getBalance().then(data => {
-  console.log(data);
-});
-```
 
-> The above command returns JSON structured like this:
+> Response example:
 
 ```
 {
@@ -130,6 +125,23 @@ client.wallet.getBalance().then(data => {
 }
 ```
 
+> Client example:
+
+```shell
+curl \
+-d '{}' \
+-H "Content-Type: application/json" \
+-X POST https://api.bbs.money/wallet/balance?appid=...&sign=...&ts=...
+```
+
+```javascript
+const { Client } = require('bbs-money-client');
+const client = new Client({ "appId": "...", "appKey": "..."});
+client.wallet.getBalance().then(data => {
+  console.log(data);
+});
+```
+
 Retrieve the balance of current wallet address.
 
 ### HTTP Request
@@ -138,19 +150,16 @@ Retrieve the balance of current wallet address.
 
 ## Get transactions
 
-```shell
-curl -d '{"offset":0,"limit":10}' -H "Content-Type: application/json" -X POST https://api.bbs.money/wallet/transactions?appid=...&sign=...&ts=...
+> Request example:
+
+```
+{
+  "offset": 0,
+  "limit": 10
+}
 ```
 
-```javascript
-const { Client } = require('bbs-money-client');
-const client = new Client({ "appId": "...", "appKey": "..."});
-client.wallet.getTransactions(0, 10).then(data => {
-  console.log(data);
-});
-```
-
-> The above command returns JSON structured like this:
+> Response example:
 
 ```
 [
@@ -179,6 +188,23 @@ client.wallet.getTransactions(0, 10).then(data => {
 ]
 ```
 
+> Client example:
+
+```shell
+curl \
+-d '{"offset":0,"limit":10}' \
+-H "Content-Type: application/json" \
+-X POST https://api.bbs.money/wallet/transactions?appid=...&sign=...&ts=...
+```
+
+```javascript
+const { Client } = require('bbs-money-client');
+const client = new Client({ "appId": "...", "appKey": "..."});
+client.wallet.getTransactions(0, 10).then(data => {
+  console.log(data);
+});
+```
+
 ### HTTP Request
 
 `POST /wallet/transactions`
@@ -192,19 +218,15 @@ limit | integer | 10 | Defines how many results will be returned.
 
 ## Get details of a transcation
 
-```shell
-curl -d '{"hash":"..."}' -H "Content-Type: application/json" -X POST https://api.bbs.money/wallet/transaction-details?appid=...&sign=...&ts=...
+> Request example:
+
+```
+{
+  "hash": "transaction hash"
+}
 ```
 
-```javascript
-const { Client } = require('bbs-money-client');
-const client = new Client({ "appId": "...", "appKey": "..."});
-client.wallet.getTransactionDetails("hash").then(data => {
-  console.log(data);
-});
-```
-
-> The above command returns JSON structured like this:
+> Response example:
 
 ```
 {
@@ -240,6 +262,23 @@ client.wallet.getTransactionDetails("hash").then(data => {
 }
 ```
 
+> Client example:
+
+```shell
+curl \
+-d '{"hash":"..."}' \
+-H "Content-Type: application/json" \
+-X POST https://api.bbs.money/wallet/transaction-details?appid=...&sign=...&ts=...
+```
+
+```javascript
+const { Client } = require('bbs-money-client');
+const client = new Client({ "appId": "...", "appKey": "..."});
+client.wallet.getTransactionDetails("hash").then(data => {
+  console.log(data);
+});
+```
+
 ### HTTP Request
 
 `POST /wallet/transaction-details`
@@ -252,8 +291,37 @@ hash | string | The hash of the transaction.
 
 ## Send a transcation
 
+> Request example:
+
+```
+{
+  "mixin": 0,
+  "fee": "100",
+  "paymentId": "",
+  "transfers": [
+    {
+      "address":  "wallet address",
+      "amount": "1000"
+    }
+  ]
+}
+```
+
+> Response example:
+
+```
+{
+  "hash": "transaction hash"
+}
+```
+
+> Client example:
+
 ```shell
-curl -d '{"mixin":0,"fee":"1","paymentId":"", "transfers":[{"address":"...","amount":"1000"}]}' -H "Content-Type: application/json" -X POST https://api.bbs.money/wallet/send?appid=...&sign=...&ts=...
+curl \
+-d '{"mixin":0,"fee":"1","paymentId":"", "transfers":[{"address":"...","amount":"1000"}]}' \
+-H "Content-Type: application/json" \
+-X POST https://api.bbs.money/wallet/send?appid=...&sign=...&ts=...
 ```
 
 ```javascript
@@ -264,13 +332,6 @@ client.wallet.send('address', 'amount', 'fee', 'paymentId', 'mixin').then(data =
 });
 ```
 
-> The above command returns JSON structured like this:
-
-```
-{
-  "hash": "transaction hash"
-}
-```
 
 ### HTTP Request
 
@@ -280,9 +341,14 @@ client.wallet.send('address', 'amount', 'fee', 'paymentId', 'mixin').then(data =
 
 Parameter | Type | Default | Description
 --------- | ---- | ------- | -----------
-address | string | required | The destination address.
-amount | string | required | The amount to be sent.
+mixin | integer | 0 | Anonymity level.
 fee | string | required | Transaction fee.
 paymentId | string | "" | Transaction id to be attached to the transaction.
-mixin | integer | 0 | Anonymity level.
+transfers | Destination[] | require | Destinations
 
+### Destionation
+
+Parameter | Type | Default | Description
+--------- | ---- | ------- | -----------
+address | string | required | The destination address.
+amount | string | required | The amount to be sent.
